@@ -77,3 +77,42 @@ function useVehicle(vehicle: Vehicle){
 
 useVehicle(v1);
 useVehicle(v2);
+
+
+interface Bird { //could be a class too
+    type: 'bird'; //descriminated unions, same property in both interface just to be more safe
+    flyingSpeed: number;
+}
+
+interface Horse {
+    type: 'horse'
+    runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal){
+    let speed;
+    switch (animal.type){
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed;
+    }
+    console.log('Moving with speed: ' + speed)
+}
+
+moveAnimal({type: "bird", flyingSpeed: 10})
+
+//const userInputElement = document.getElementById('user-input')!; //the exclamation mark never return null, we could also use a if(userInputElement)
+
+//userInputElement.value = "Hi there!" //typescript don't know this is a input element, he thinks its just a HTMLelement, thats why "value" is giving errors
+
+
+//const userInputElement = <HTMLInputElement>document.getElementById('user-input')! //this is a type casting, so the typescript knows this is a html input element
+const userInputElement = <HTMLInputElement>document.getElementById('user-input')! as HTMLInputElement;
+
+
+
+userInputElement.value = "Hi there!"
