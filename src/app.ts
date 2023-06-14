@@ -25,6 +25,11 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric; //this means that needs to be a number since both types/interface have that type in common
 
+
+function add(a: number, b: number): number; //these are function overloads, they help when typescript is not able to infer correctly the type of the return value, so here we can infer the correct type for each combination
+function add(a: string, b: string): string;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
 function add(a: Combinable, b: Combinable){
     if (typeof a === 'string' || typeof b === 'string'){ //this is a type guard, because we have flexibility on the type but this make sures that we can compile, otherwise we could get errors (for example sum of a string with a number)
         return a.toString()+ b.toString();
@@ -32,7 +37,10 @@ function add(a: Combinable, b: Combinable){
     return a + b;
 }
 
-type UnknownEmployee = Employee | Admin;
+const result = add('Max', ' Schwarz');
+result.split(' ');
+
+/* type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee){
     console.log('Name: ' + emp.name);
@@ -116,3 +124,28 @@ const userInputElement = <HTMLInputElement>document.getElementById('user-input')
 
 
 userInputElement.value = "Hi there!"
+
+
+interface ErrorContainer { // { email: 'Not a valid email', username: 'Must start with a character!'}
+    //id: string;  //needs to be the same type of the index property
+    [prop: string]: string; //all we are saying here is that here can be any property that could be interpreted as a string with a string value, here we are using the index property
+}
+
+const errorBag: ErrorContainer = { //we have extra flexability because we don't know how many properties we will use and there values.
+    email: 'Not a valid email!',
+    username: 'Must start with a capital character!'
+};
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
