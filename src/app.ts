@@ -40,6 +40,21 @@ function add(a: Combinable, b: Combinable){
 const result = add('Max', ' Schwarz');
 result.split(' ');
 
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: { title: 'CEO', description: 'My own company'}
+};
+
+console.log(fetchedUserData?.job?.title); //here we use the optional chaining since we don't know if certain property exists when we fetch data from some db
+
+const userInput = '';
+
+const storedData = userInput ?? 'Default'; // this "??" is a nullish coalescing, which means that if the user input is a empty string, thats a valid value so we will display it, meanwhile null or undefined they keep a falsy/unvalid value
+
+console.log(storedData)
+
+
 /* type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee){
